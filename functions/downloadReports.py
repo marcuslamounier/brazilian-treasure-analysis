@@ -11,8 +11,11 @@ def downloadReport(year, url, output):
 
 def downloadReports(startYear, sheet, url):
   currentYear = date.today().year
-  pathOutput = 'outputs/' + sheet
 
+  pathOutput = 'outputs'
+  if not exists(pathOutput): mkdir(pathOutput)
+
+  pathOutput += ('/' + sheet)
   if not exists(pathOutput): mkdir(pathOutput)
   
   for year in range(int(startYear), currentYear):
