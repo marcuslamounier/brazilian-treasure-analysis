@@ -1,4 +1,4 @@
 "Title","sheetName","urlName","csvName"
 "IPCA+","NTN-B Princ","NTN-B_Principal","ipca"
-"Selic","NTN-B Princ","LFT","selic"
-"Prefixado","NTN-B Princ","LTN","pre"
+"Selic","LFT","LFT","selic"
+"Prefixado","LTN","LTN","pre"
