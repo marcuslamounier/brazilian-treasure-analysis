@@ -5,17 +5,23 @@ from functions.downloadReports import downloadReports
 from functions.menuFunctions import renderMenu
 from datetime import date
 
+from functions.resourcePath import resourcePath
+
 print('Welcome to Brazilian Treasure Data Extractor')
 print('\n-------------')
 
-titles = read_csv('inputs/titles.csv')
+file = resourcePath('inputs/titles.csv')
+titles = read_csv(file)
+# titles = read_csv('inputs/titles.csv')
 option, index = renderMenu(titles['Title'], 'Choose the Brazilian title')
 tdTitle = titles['Title'][index]
 tdSheetName = titles['sheetName'][index]
 tdUrlName = titles['urlName'][index]
 tdCsvName = titles['csvName'][index]
 
-dues = read_csv('inputs/' + tdCsvName + '.csv')
+file = resourcePath('inputs/' + tdCsvName + '.csv')
+dues = read_csv(file)
+# dues = read_csv('inputs/' + tdCsvName + '.csv')
 option, index = renderMenu(dues['Year'], 'Choose the expiry year')
 tdYear = dues['Year'][index]
 tdYearStart = dues['YearStart'][index]

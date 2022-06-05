@@ -16,24 +16,16 @@ def printChart (ticker, dates, prices, rates):
     [0.25, 'dashdot'],
   ]
 
-  fig, yPrices = plt.subplots(figsize=(15, 6))
-  yPrices.set_title(ticker)
-
-  yPrices.set_xlabel('Date')
-  yPrices.set_ylabel('Prices')
-  yPrices.plot(dates, prices)
-
-  for s in setUpLines:
-    yPrices.axhline(
-      y = percentile(prices, s[0] * 100),
-      linestyle = s[1]
-    )
-    plt.text(s[0] * 100, .5, 'hello')
-  yPrices.tick_params(axis='y')
+  fig, yRates = plt.subplots(figsize=(15, 6))
+  yRates.set_title(ticker)
+  yRates.set_xlabel('Date')
 
   color = 'tab:orange'
-  yRates = yPrices.twinx()
-  yRates.set_ylabel('Rates')
+  yRates.set_ylabel(
+    'Rates',
+    color=color,
+    fontsize=14
+    )
   yRates.plot(dates, rates, color=color)
   for s in setUpLines:
     yRates.axhline(
@@ -41,7 +33,23 @@ def printChart (ticker, dates, prices, rates):
       linestyle = s[1],
       color = color
     )
-  yRates.tick_params(axis='y')
+  yRates.tick_params(axis='y', color=color)
+
+  color = 'tab:blue'
+  yPrices = yRates.twinx()
+  yPrices.set_ylabel(
+    'Prices',
+    color=color,
+    fontsize=14
+  )
+  yPrices.plot(dates, prices)
+  for s in setUpLines:
+    yPrices.axhline(
+      y = percentile(prices, s[0] * 100),
+      linestyle = s[1],
+      color = color
+    )
+  yPrices.tick_params(axis='y', color=color)
 
   fig.tight_layout()
   plt.show()
